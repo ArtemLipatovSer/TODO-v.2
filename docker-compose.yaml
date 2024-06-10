@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - ./db/postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./db/db.env
+
+  web:
+    build: ./web
+    command: "gunicorn todo_list.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - ./web/media:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - ./web/.env
+
+volumes:
+  postgres_data:
+  media_volume:

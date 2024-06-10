@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="feature">
+        <div class="feature-content">
+            <h1>
+                Todo
+            </h1>
+            <p>Todo helps you more focus!</p>
+            <a href="{% url 'register' %}" class="btn btn-primary cta">Get started</a>
+        </div>
+        <img src="{% static 'images/feature.jpg' %}" alt="" class="feature-image">
+    </section>
+{% endblock content %}
